@@ -11,21 +11,20 @@ const obtenerArchivos = ( ruta, nombre, orden) => {
             templateAcordion = templateAcordion.replace(/{nombre}/g, nombre);
             templateAcordion = templateAcordion.replace(/{numero}/g, orden);
         
-
-            $("#accordionExample").append(templateAcordion);
+            document.querySelector('#accordionExample').innerHTML = templateAcordion;
             
-            let templateTable = document.querySelector("#tabla").innerHTML;
-            let table = '';
+            let templateTabla = document.querySelector("#tabla").innerHTML;
+            let tabla = '';
 
             datos.map( (e, i) => {
                 if( e.indexOf('.sql') != -1 ){
-                    table += templateTable;
-                    table = table.replace(/{nombre}/g, e);
-                    table = table.replace(/{ruta}/g, ruta);
+                    tabla += templateTabla;
+                    tabla = tabla.replace(/{nombre}/g, e);
+                    tabla = tabla.replace(/{ruta}/g, ruta);
                 }
             });
-
-            $(`#tabla${orden} tbody`).append(table);
+            
+            document.querySelector(`#tabla${orden} tbody`).innerHTML = tabla;
 
         }
     }
